@@ -46,11 +46,11 @@ public class Dni {
         return esValida;
     }
 
-    public Character obtenerLetra() {
-        if (getNumeroSano()) {
-            return tabla.calcularLetra(getParteNumericaDni());
+    public String obtenerLetra() {
+        if (checkNumero()) {
+            return String.valueOf(tabla.calcularLetra(getParteNumericaDni()));
         }
-        return Character.MIN_VALUE;
+        return "";
     }
 
     @Override
@@ -84,6 +84,34 @@ public class Dni {
 
         private boolean soloNumeros() {
         String parteNumerica = dni.substring(0, dni.length() - 1);
+        for (int i = 0; i < parteNumerica.length(); i++) {
+            if (!Character.isDigit(parteNumerica.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String extraerParteNumericaDni() {
+        if (longitudCorrecta()) {
+            return dni.substring(0, dni.length() - 1);
+        }
+        return "";
+    }
+
+    public boolean isDniNumero(String num) {
+        return soloNumeros(num);
+    }
+
+    public boolean checkNumeroDni() {
+        return checkNumero();
+    }
+
+    public String extraerParteAlfabeticaDni() {
+        return String.valueOf(getParteAlfabeticaDni());
+    }
+
+    private boolean soloNumeros(String parteNumerica) {
         for (int i = 0; i < parteNumerica.length(); i++) {
             if (!Character.isDigit(parteNumerica.charAt(i))) {
                 return false;
