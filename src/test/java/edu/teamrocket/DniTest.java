@@ -1,7 +1,9 @@
 package edu.teamrocket;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import edu.teamrocket.utilidades.Dni;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 import java.util.List;
