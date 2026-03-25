@@ -1,6 +1,6 @@
 package edu.teamrocket.utilidades;
 
-class TablaAsignacion {
+public class TablaAsignacion {
 
     private final char[] tabla = {
         'T','R','W','A','G','M',
@@ -9,42 +9,37 @@ class TablaAsignacion {
         'H','L','C','K','E'
     };
 
-    TablaAsignacion() {}
+    public TablaAsignacion() {}
 
-    char[] getTabla() {
+    public char[] getTabla() {
         return this.tabla;
     }
 
-    char getLetra(int clave) {
-        try {
-            return this.tabla[clave];
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new ArrayIndexOutOfBoundsException(
-                "La letra no es válida."
-            );
+    public char getLetra(int clave) {
+        if(clave < 0 || clave >= tabla.length){
+            throw new ArrayIndexOutOfBoundsException("La letra no es válida.");
         }
+        return tabla[clave];
     }
 
-    int getModulo() {
-        return this.tabla.length;
+    public int getModulo() {
+        return tabla.length;
     }
 
-    Boolean isLetraPermitida(char letra) {
+    public Boolean isLetraPermitida(char letra) {
         for (char l : tabla) {
-            if (l == letra) {
-                return true;
-            }
+            if (l == letra) return true;
         }
         return false;
     }
 
-    char calcularLetra(String numeroDni) {
+    public char calcularLetra(String numeroDni) {
         int posicion = Integer.parseInt(numeroDni) % getModulo();
         return getLetra(posicion);
     }
 
     @Override
     public String toString() {
-        return String.valueOf(tabla);
+        return new String(tabla);
     }
 }
